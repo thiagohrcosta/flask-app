@@ -11,7 +11,7 @@ migrate = Migrate(app, db)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    from form import NameForm  # Import NameForm here to avoid circular dependency
+    from form import NameForm 
     name = None
     form = NameForm()
     if form.validate_on_submit():
