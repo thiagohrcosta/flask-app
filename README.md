@@ -39,8 +39,8 @@ The primary objective of this project is to reinforce understanding and implemen
 
 **6.  Access the API endpoints:**
     
-    ** -   List all users: ** `GET /users`
-    ** -   Show user details: ** `GET /users/{user_id}`
-    ** -   Create a new user: ** `POST /users/create`
-    ** -   Update user details: ** `PUT /users/update/{user_id}/edit`
-    ** -   Delete a user: ** `DELETE /users/delete/{user_id}````
+    **   List all users: ** `GET /users`
+    **   Show user details: ** `GET /users/{user_id}`
+    **   Create a new user: ** `POST /users/create`
+    **   Update user details: ** `PUT /users/update/{user_id}/edit`
+    **   Delete a user: ** `DELETE /users/delete/{user_id}````
