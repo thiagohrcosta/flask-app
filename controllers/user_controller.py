@@ -16,8 +16,12 @@ def index():
 
 def show(user_id):
   session = db.session()
+  user = set_user(user_id, session)
+
+  if not user:
+    user_not_found()
+  
   try:
-    user = session.query(User).get(user_id)
     return Response(json.dumps([user.serialize()]))
   except Exception as e:
     session.rollback()
@@ -45,10 +49,10 @@ def create():
 
 def update(user_id):
   session = db.session()
-  user = session.query(User).get(user_id)
+  user = set_user(user_id, session)
   
   if not user:
-    return jsonify({'message': 'User not found!'}), 404
+    user_not_found()
   
   body = request.get_json()
   existing_user = User.query.filter_by(name=body['name']).first()
@@ -76,10 +80,10 @@ def update(user_id):
 
 def destroy(user_id):
   session = db.session()
-  user = session.query(User).get(user_id)
+  user = set_user(user_id, session)
 
   if not user:
-    return jsonify({'message': 'User not found!'}), 404
+    user_not_found()
   
   try:
     session.delete(user)
@@ -91,3 +95,9 @@ def destroy(user_id):
   finally:
     session.close()
   
+def set_user(user_id, session):
+  user = session.query(User).get(user_id)
+  return user
+
+def user_not_found():
+  return jsonify({'message': 'User not found!'}), 404
